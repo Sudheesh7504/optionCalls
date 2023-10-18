@@ -1,0 +1,55 @@
+<button (click)="getDataWithCustomHeaders()">
+  Get Data with Custom Headers
+</button>
+<div *ngIf="responseData">
+  <pre>{{ responseData | json }}</pre>
+</div>
+
+<form [formGroup]="queryParamsForm" (ngSubmit)="getDataWithQueryParams()">
+  <input type="text" formControlName="param1" placeholder="Parameter 1" />
+  <input type="text" formControlName="param2" placeholder="Parameter 2" />
+  <button type="submit">Get Data with Query Params</button>
+</form>
+<div *ngIf="responseData">
+  <pre>{{ responseData | json }}</pre>
+</div>
+
+<!-- http.component.html -->
+<button (click)="getJsonResponse('json')">Get Response as JSON</button>
+<button (click)="getTextResponse('text')">Get Response as Text</button>
+<button (click)="getArrayBufferResponse('arraybuffer')">
+  Get Response as ArrayBuffer
+</button>
+<button (click)="getBlobResponse('blob')">Get Response as Blob</button>
+
+<div *ngIf="responseData">
+  <h3>Response Type: {{ responseType }}</h3>
+  <div *ngIf="responseType === 'json'">
+    <pre>{{ responseData | json }}</pre>
+  </div>
+  <div *ngIf="responseType === 'text'">
+    <pre>{{ responseData | textFormat }}</pre>
+  </div>
+  <div *ngIf="responseType === 'arraybuffer' || responseType === 'blob'">
+    <pre>{{ responseData | binaryFormat : "hex" }}</pre>
+    <pre>{{ responseData | binaryFormat : "base64" }}</pre>
+  </div>
+</div>
+
+<button (click)="getDataWithProgress()">Get Data with Progress</button>
+<div *ngIf="progress > 0">
+  <p>Download Progress: {{ progress }}%</p>
+</div>
+<div *ngIf="responseData">
+  <pre>{{ responseData | json }}</pre>
+</div>
+
+<!-- my-http.component.html -->
+<!-- <div *ngIf="responseData">
+  <h2>Response Data</h2>
+  <pre>{{ responseData | json }}</pre>
+</div> -->
+
+<!-- http.component.html -->
+
+<button (click)="createUser()">Create User</button>
